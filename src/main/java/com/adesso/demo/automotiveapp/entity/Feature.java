@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-import com.adesso.demo.automotiveapp.dao.DbValueConverter;
+import com.adesso.demo.automotiveapp.dao.ModelConverter;
 
 @Entity
 @Table(name="features")
@@ -34,7 +34,7 @@ public class Feature {
 	private BigDecimal cost;
 	
 	@Column(name="models")
-	@Convert(converter = DbValueConverter.class)
+	@Convert(converter = ModelConverter.class)
 	private List<String> models;
 		
 	// constructors

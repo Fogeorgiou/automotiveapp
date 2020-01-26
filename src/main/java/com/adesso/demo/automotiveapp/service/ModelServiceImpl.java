@@ -31,12 +31,24 @@ public class ModelServiceImpl implements ModelService {
 	@Override
 	public void save(Model aModel) {
 		modelRepository.save(aModel);
-
 	}
 
 	@Override
 	public void deleteById(int id) {
 		modelRepository.deleteById(id);
+	}
+	
+	@Override
+	public Model update(int id, Model aModel) {
+		Model modelToUpdate = modelRepository.findById(id).orElseThrow();
+		
+		modelToUpdate.setName(aModel.getName());
+		modelToUpdate.setBaseCost(aModel.getBaseCost());
+		modelToUpdate.setManufacturer(aModel.getManufacturer());
+		modelToUpdate.setAvailableFeatures(aModel.getAvailableFeatures());
 
+		modelRepository.save(modelToUpdate);
+		
+		return modelToUpdate;
 	}
 }

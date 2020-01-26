@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.adesso.demo.automotiveapp.dao.DbValueConverter;
 
@@ -21,7 +22,7 @@ public class Model {
 	// fields
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
@@ -29,7 +30,7 @@ public class Model {
 	@Column(name="name")
 	private String name;
 	
-	@NotEmpty(message = "Please provide a base cost for the model")
+	@NotNull(message = "Please provide a base cost for the model")
 	@Column(name="base_cost")
 	private BigDecimal baseCost;
 	

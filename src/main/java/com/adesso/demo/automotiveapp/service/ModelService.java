@@ -13,4 +13,6 @@ public interface ModelService {
 	public void save(Model aModel);
 	
 	public void deleteById(int id);
+	
+	public Model update(int id, Model aModel);
 }

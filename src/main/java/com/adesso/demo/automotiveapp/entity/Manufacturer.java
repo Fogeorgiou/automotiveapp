@@ -17,10 +17,8 @@ import com.adesso.demo.automotiveapp.dao.DbValueConverter;
 @Table(name="manufacturers")
 public class Manufacturer {
 
-	// fields
-	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
@@ -36,8 +34,6 @@ public class Manufacturer {
 	@Convert(converter = DbValueConverter.class)
 	private List<String> models;
 		
-	// constructors
-	
 	public Manufacturer() {
 		
 	}
@@ -48,8 +44,6 @@ public class Manufacturer {
 		this.models = models;
 	}
 
-	// getter/setter methods
-	
 	public int getId() {
 		return id;
 	}
@@ -81,8 +75,6 @@ public class Manufacturer {
 	public void setModels(List<String> models) {
 		this.models = models;
 	}
-
-	// toString
 
 	@Override
 	public String toString() {

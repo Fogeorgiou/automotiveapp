@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.adesso.demo.automotiveapp.dao.FeatureRepository;
@@ -35,15 +36,17 @@ public class PricingServiceImpl implements PricingService {
 			          HttpStatus.NOT_FOUND, "Model Id: " + modelId + " not found", ex);
 		}
 		
-		for (Integer featureId : featureIds) {
-			try {
-				totalCost = totalCost.add(featureRepository.findById(featureId).get().getCost());
-			} catch (NoSuchElementException ex) {
-				throw new ResponseStatusException(
-				          HttpStatus.NOT_FOUND, "Feature Id: " + featureId + " not found", ex);
+		if (!CollectionUtils.isEmpty(featureIds)) {
+			for (Integer featureId : featureIds) {
+				try {
+					totalCost = totalCost.add(featureRepository.findById(featureId).get().getCost());
+				} catch (NoSuchElementException ex) {
+					throw new ResponseStatusException(
+					          HttpStatus.NOT_FOUND, "Feature Id: " + featureId + " not found", ex);
+				}
 			}
 		}
-		
+
 		return totalCost;
 	}
 
